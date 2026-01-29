@@ -1,4 +1,4 @@
-package com.ariane.careertracker.application;
+package com.ariane.careertracker.model;
 
 public enum ApplicationStatus {
     APPLIED,

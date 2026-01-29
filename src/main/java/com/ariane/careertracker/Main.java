@@ -1,19 +1,10 @@
 package com.ariane.careertracker;
 
-import com.ariane.careertracker.application.JobApplication;
-import com.ariane.careertracker.application.ApplicationStatus;
+import com.ariane.careertracker.ui.ConsoleMenu;
 
 public class Main {
 
     public static void main(String[] args) {
-
-        JobApplication application =
-                new JobApplication("Google", "Software Engineer");
-
-        System.out.println(application);
-
-        application.updateStatus(ApplicationStatus.INTERVIEW);
-
-        System.out.println(application);
+        new ConsoleMenu().start();
     }
 }
