@@ -9,6 +9,7 @@ public class JobApplication {
     private ApplicationStatus status;
     private LocalDate appliedDate;
 
+    // Construtor simples (quando cria do zero)
     public JobApplication(String company, String position) {
         this.company = company;
         this.position = position;
@@ -16,13 +17,33 @@ public class JobApplication {
         this.appliedDate = LocalDate.now();
     }
 
-    public JobApplication(String company, String position,
-                          ApplicationStatus status, LocalDate appliedDate) {
+    // Construtor usado ao carregar do arquivo
+    public JobApplication(String company, String position, ApplicationStatus status, LocalDate appliedDate) {
         this.company = company;
         this.position = position;
         this.status = status;
         this.appliedDate = appliedDate;
     }
+
+    // ===== GETTERS =====
+
+    public String getCompany() {
+        return company;
+    }
+
+    public String getPosition() {
+        return position;
+    }
+
+    public ApplicationStatus getStatus() {
+        return status;
+    }
+
+    public LocalDate getAppliedDate() {
+        return appliedDate;
+    }
+
+    // ===== SETTERS =====
 
     public void updateStatus(ApplicationStatus newStatus) {
         this.status = newStatus;
@@ -30,9 +51,6 @@ public class JobApplication {
 
     @Override
     public String toString() {
-        return "Company: " + company +
-                " | Position: " + position +
-                " | Status: " + status +
-                " | Applied on: " + appliedDate;
+        return company + " - " + position + " (" + status + ")";
     }
 }
