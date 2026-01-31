@@ -1,7 +1,10 @@
 package com.ariane.careertracker.ui;
 
+import com.ariane.careertracker.model.ApplicationStatus;
+import com.ariane.careertracker.model.JobApplication;
 import com.ariane.careertracker.service.JobApplicationService;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class ConsoleMenu {
@@ -19,18 +22,20 @@ public class ConsoleMenu {
             switch (option) {
                 case 1 -> addApplication();
                 case 2 -> listApplications();
-                case 3 -> exit();
+                case 3 -> updateStatus();
+                case 4 -> exit();
                 default -> System.out.println("Invalid option.");
             }
 
-        } while (option != 3);
+        } while (option != 4);
     }
 
     private void showMenu() {
         System.out.println("\n=== Job Application Tracker ===");
         System.out.println("1 - Add job application");
         System.out.println("2 - List applications");
-        System.out.println("3 - Exit");
+        System.out.println("3 - Update application status");
+        System.out.println("4 - Exit");
         System.out.print("Choose an option: ");
     }
 
@@ -49,17 +54,54 @@ public class ConsoleMenu {
         System.out.print("Position: ");
         String position = scanner.nextLine();
 
-        service.addApplication(company, position);
+        JobApplication application = new JobApplication(company, position);
+        service.add(application);
+
         System.out.println("Application added successfully!");
     }
 
     private void listApplications() {
-        if (service.isEmpty()) {
+        List<JobApplication> applications = service.list();
+
+        if (applications.isEmpty()) {
             System.out.println("No applications found.");
             return;
         }
 
-        service.getAll().forEach(System.out::println);
+        for (int i = 0; i < applications.size(); i++) {
+            System.out.println((i + 1) + " - " + applications.get(i));
+        }
+    }
+
+    private void updateStatus() {
+        List<JobApplication> applications = service.list();
+
+        if (applications.isEmpty()) {
+            System.out.println("No applications to update.");
+            return;
+        }
+
+        listApplications();
+
+        System.out.print("Choose application number: ");
+        int index = Integer.parseInt(scanner.nextLine()) - 1;
+
+        System.out.println("New status:");
+        for (ApplicationStatus status : ApplicationStatus.values()) {
+            System.out.println("- " + status);
+        }
+
+        System.out.print("Type status: ");
+        ApplicationStatus newStatus =
+                ApplicationStatus.valueOf(scanner.nextLine().toUpperCase());
+
+        boolean updated = service.updateStatus(index, newStatus);
+
+        if (updated) {
+            System.out.println("Status updated successfully!");
+        } else {
+            System.out.println("Invalid application number.");
+        }
     }
 
     private void exit() {
