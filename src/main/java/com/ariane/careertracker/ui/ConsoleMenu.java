@@ -23,11 +23,12 @@ public class ConsoleMenu {
                 case 1 -> addApplication();
                 case 2 -> listApplications();
                 case 3 -> updateStatus();
-                case 4 -> exit();
+                case 4 -> filterByStatus();
+                case 5 -> exit();
                 default -> System.out.println("Invalid option.");
             }
 
-        } while (option != 4);
+        } while (option != 5);
     }
 
     private void showMenu() {
@@ -35,7 +36,8 @@ public class ConsoleMenu {
         System.out.println("1 - Add job application");
         System.out.println("2 - List applications");
         System.out.println("3 - Update application status");
-        System.out.println("4 - Exit");
+        System.out.println("4 - Filter applications by status");
+        System.out.println("5 - Exit");
         System.out.print("Choose an option: ");
     }
 
@@ -103,6 +105,27 @@ public class ConsoleMenu {
             System.out.println("Invalid application number.");
         }
     }
+    private void filterByStatus() {
+        System.out.println("Choose status:");
+
+        for (ApplicationStatus status : ApplicationStatus.values()) {
+            System.out.println("- " + status);
+        }
+
+        System.out.print("Type status: ");
+        ApplicationStatus chosenStatus =
+                ApplicationStatus.valueOf(scanner.nextLine().toUpperCase());
+
+        List<JobApplication> results = service.filterByStatus(chosenStatus);
+
+        if (results.isEmpty()) {
+            System.out.println("No applications with this status.");
+            return;
+        }
+
+        results.forEach(System.out::println);
+    }
+
 
     private void exit() {
         System.out.println("Good luck in your job search!");
