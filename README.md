@@ -1,6 +1,6 @@
 # Career Application Tracker 🚀
 
-Um rastreador de candidaturas em desenvolvimento (WIP) projetado para ajudar profissionais a organizarem suas aplicações a vagas de emprego. Permite registrar empresas, cargos e acompanhar o status de cada processo seletivo através de uma interface de linha de comando (CLI).
+Um rastreador dndidaturas em desenvolvimento projetado para ajudar profissionais a organizarem suas aplicaçõee cas a vagas de emprego. Permite registrar empresas, cargos e acompanhar o status de cada processo seletivo através de uma interface de linha de comando (CLI).
 
 ---
 
@@ -12,13 +12,14 @@ Um rastreador de candidaturas em desenvolvimento (WIP) projetado para ajudar pro
 
 ---
 
-## ✨ Funcionalidades Atuais
+## ✨ Funcionalidades (MPV)
 
-Atualmente, o sistema oferece as seguintes operações via terminal:
-
-- **Adicionar candidatura:** Registra o nome da empresa e o cargo desejado. O status inicial é automaticamente definido como `APPLIED` e a data atual é registrada.
-- **Listar candidaturas:** Exibe todas as candidaturas salvas no CSV.
-- **Persistência automática:** Todos os dados são armazenados em arquivo CSV para não serem perdidos ao fechar a aplicação.
+- Adicionar candidatura
+- Listar todas as candidaturas
+- Atualizar status da candidatura
+- Filtrar candidaturas por status
+- Persistência em arquivo .csv
+- Interface via console (menu interativo)
 
 ---
 
@@ -44,18 +45,11 @@ Certifique-se de ter o **JDK 21** instalado.
 
 ---
 
-## 📂 Estrutura do Projeto
+## 🧱 Arquitetura
 
-- **`model`**: Contém a classe `JobApplication` e o enum `ApplicationStatus` (`APPLIED`, `INTERVIEW`, `OFFER`, `REJECTED`).
-- **`service`**: Gerencia a lógica de negócio e o armazenamento em CSV.
-- **`ui`**: Controla a interação com o usuário via `ConsoleMenu`.
-
+O projeto segue uma separação simples de responsabilidades:
+- `model`: entidades e enums
+- `service`: regras de negócio e persistência
+- `ui`: interação com o usuário via console
 ---
 
-## 🚧 Próximos Passos (WIP)
-
-- [ ] Implementar edição de status para candidaturas existentes
-- [ ] Adicionar filtros de busca (por empresa ou status)
-- [ ] Melhorar o tratamento de erros na leitura do CSV
-- [ ] Criar testes unitários para o serviço de armazenamento
- armazenamento
