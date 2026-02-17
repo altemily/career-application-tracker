@@ -1,6 +1,6 @@
 # Career Application Tracker 🚀
 
-Um rastreador dndidaturas em desenvolvimento projetado para ajudar profissionais a organizarem suas aplicaçõee cas a vagas de emprego. Permite registrar empresas, cargos e acompanhar o status de cada processo seletivo através de uma interface de linha de comando (CLI).
+Um rastreador de candidaturas projetado para ajudar profissionais a organizarem suas aplicações em vagas de emprego. Permite registrar empresas, cargos e acompanhar o status de cada processo seletivo através de uma interface de linha de comando (CLI).
 
 ---
 
